@@ -1,8 +1,16 @@
 const form = document.getElementById('form');
 const input = document.getElementById('input');
-const todos = document.getElementById('todos');
+const todosUl  = document.getElementById('todos');
 // const time = document.getElementById('time');
 // const date = document.getElementById('date');
+
+const todos = JSON.parse(localStorage.getItem('todos'));
+
+if (todos) {
+    todos.forEach(todo => {
+        addTodo(todo)
+    });
+}
 
 var date = new Date();
 document.getElementById('date').innerHTML = date.toLocaleDateString();
@@ -34,25 +42,38 @@ form.addEventListener("submit", (e) => {
     addTodo();
 });
 
-function addTodo() {
- 
-    const todoText = input.value;
+function addTodo(todo) {
+    let todoText = input.value;
+    
+    if (todo) {
+        todoText = todo.text;
+    }
 
     if(todoText) {
         const todoEl = document.createElement("li");
+        if (todo && todo.completed){
+            todo.El.classList.add("completed");
+        }
         todoEl.innerText = todoText;
 
         todoEl.addEventListener("click", () =>{
             todoEl.classList.toggle("completed");
+        
+            updateLS();
+
         });
 
         todoEl.addEventListener("contextmenu", (e) => {
             e.preventDefault();
 
             todoEl.remove();
+        
+            updateLS();
+
+
         });
 
-        todos.appendChild(todoEl);
+        todosUl.appendChild(todoEl);
 
         input.value = "";
 
@@ -61,16 +82,16 @@ function addTodo() {
 }
 
 function updateLS() {
-    const todosEL = document.querySelectorAll("li");
+    const todosEl = document.querySelectorAll("li");
 
     const todos = [];
 
     todosEl.forEach((todoEl) => {
-        todo.push({
+        todos.push({
             text: todoEl.innerText,
             completed: todoEl.classList.contains("completed"),
         });
     });
 
-    localStorage.setItem('todos',JSON.stringify(todos));
+    localStorage.setItem("todos", JSON.stringify(todos));
 }

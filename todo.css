@@ -6,7 +6,7 @@
 body{
     background: #fff;
     /* display: flex; */
-    color: #777;
+    /* color: #777; */
     /* align-items: center;
     flex-direction: column; */
     /* min-height:100vh; */
@@ -16,32 +16,37 @@ body{
 }
 
 .container{
-    background: #fff;
+    background-color: #fff; 
     display: flex;
-    /* align-items: center; */
-    justify-content: center;
-    width: 100%;
-    max-width:500px;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+    /* width: 100vw; */
+    max-width:100%;
 
 }
 
 .loke{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    margin-top:50px;
+
     
 }
 .left{
     display: flex;
-    justify-content:center;
+    justify-content:space-between;
+    width: 50%;
     align-items: center;
     /* justify-content: space-between; */
 }
 h1{
     color: rgb(179, 131, 226);
     /* text-align: center; */
-    font-size: 4rem;
+    font-size: 3rem;
     opacity: 0.2;
-    margin-top:50px;
 }
 form{
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
